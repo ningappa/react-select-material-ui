@@ -159,7 +159,7 @@ storiesOf('ReactSelectMaterialUi', module)
   .addParameters({ options: { showPanel: false } })
   .add('with and without fullWidth set', () => (
     <div>
-      <ReactSelectMaterialUi label="Without fullWith" options={simpleOptions} onChange={doNothing} />
+      <ReactSelectMaterialUi label="Without fullWith" options={simpleOptions} onChange={doNothing} variant="outlined" />
       <div style={style} />
       <ReactSelectMaterialUi label="With fullWith" options={simpleOptions} fullWidth={true} onChange={doNothing} />
     </div>

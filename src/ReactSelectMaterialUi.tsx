@@ -127,7 +127,7 @@ class ReactSelectMaterialUi extends React.PureComponent<ReactSelectMaterialUiPro
 			value,
 			values,
 			options,
-			variant,
+			variant = 'standard',
 			...other
 		} = this.props;
 
@@ -146,7 +146,7 @@ class ReactSelectMaterialUi extends React.PureComponent<ReactSelectMaterialUiPro
 		const isDisabled: boolean = disabled || (!!SelectProps && SelectProps.isDisabled);
 		const selectPlaceholder: string | undefined = label ? '' : placeholder;
 		const shrink: boolean = this.isShrinked(dropdownOption);
-
+		
 
 		return (
 			<FormControl
@@ -155,12 +155,15 @@ class ReactSelectMaterialUi extends React.PureComponent<ReactSelectMaterialUiPro
 				error={error}
 				fullWidth={fullWidth}
 				required={required}
+				variant={variant}
+				margin="normal"
 				{...other}
 			>
 				<SelectLabel
 					id={id}
 					label={label}
 					shrink={shrink}
+					variant={variant}
 					hasInputFocus={hasInputFocus}
 					inputLabelProps={InputLabelProps}
 				/>
@@ -178,7 +181,7 @@ class ReactSelectMaterialUi extends React.PureComponent<ReactSelectMaterialUiPro
 					onFocus={this.handleGotFocus}
 					onBlur={this.handleLostFocus}
 				/>
-				<SelectHelperText id={helperTextId} helperText={helperText} formHelperTextProps={FormHelperTextProps} />
+				<SelectHelperText id={helperTextId} helperText={helperText} formHelperTextProps={FormHelperTextProps} variant={variant} />
 			</FormControl>
 		);
 	}
@@ -290,6 +293,7 @@ export interface ReactSelectMaterialUiProps extends React.Props<ReactSelectMater
 	SelectProps?: SelectProps | any;
 	value?: SelectOptionValue;
 	values?: SelectOptionValue[];
+	variant?: 'standard' | 'outlined' | 'filled';
 }
 
 type Omit<T, K> = Pick<T, Exclude<keyof T, K>>

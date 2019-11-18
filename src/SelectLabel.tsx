@@ -3,8 +3,8 @@ import InputLabel, { InputLabelProps } from '@material-ui/core/InputLabel/InputL
 import { colorFocus, colorNoFocus } from './ColorConstants';
 import { isEmpty } from 'lodash';
 
-const SelectLabel = (props: SelectLabelProps) => {
-    const { id, label, hasInputFocus, shrink, inputLabelProps } = props;
+const SelectLabel = (props: SelectLabelProps) => {    
+    const { id, label, hasInputFocus, shrink, inputLabelProps, variant  } = props;
 
     if (isEmpty(label)) {
         return null;
@@ -18,7 +18,7 @@ const SelectLabel = (props: SelectLabelProps) => {
     const userStyle: React.CSSProperties | undefined = inputLabelProps ? inputLabelProps.style : undefined;
 
     return (
-        <InputLabel htmlFor={id} {...inputLabelProps} style={getStyle(style, userStyle)} shrink={shrink}>
+        <InputLabel htmlFor={id} {...inputLabelProps} style={getStyle(style, userStyle)} shrink={shrink} variant={variant}>
             {label}
         </InputLabel>
     );
@@ -32,6 +32,7 @@ interface SelectLabelProps {
     inputLabelProps?: Partial<InputLabelProps>;
     label?: React.ReactNode;
     shrink?: boolean;
+    variant?: 'standard' | 'outlined' | 'filled';
 }
 
 export default SelectLabel;

@@ -1,4 +1,8 @@
 import * as React from 'react';
+import Input from "@material-ui/core/Input";
+import FilledInput from  "@material-ui/core/FilledInput";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
+
 import SelectCreatable, { CreatableProps } from 'react-select/lib/Creatable';
 import SelectReadOnly from 'react-select';
 import { getStyles } from './SelectDropdownStyles';
@@ -10,14 +14,20 @@ import {
 	toString
 	} from 'lodash';
 import { Props as ReactSelectProps } from 'react-select/lib/Select';
-
+const variantComponent = {
+	standard: Input,
+	filled: FilledInput,
+	outlined: OutlinedInput,
+  };
+	
 class SelectDropdown extends React.Component<SelectDropdownProps> {
 	private static spaces: RegExp = /\s/;
 	private static SENSITIVITY: Intl.CollatorOptions = { sensitivity: 'base' };
 
 	public render() {
-		const { hasInputFocus, value, placeholder, options, selectProps, onChange, onFocus, onBlur } = this.props;
+		const { hasInputFocus, value, placeholder, options, selectProps, onChange, onFocus, onBlur, variant } = this.props;
 
+		variantComponent[variant];
 		const Select: React.ComponentClass<any> =
 			selectProps && selectProps.isCreatable ? SelectCreatable : SelectReadOnly;
 
